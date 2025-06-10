@@ -1,17 +1,29 @@
-name: Publish
+name: Publish to PyPI
 
 on:
   release:
     types: [published]
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/doc2mcp
+    
     steps:
     - uses: actions/checkout@v4
     
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.12'
     
@@ -31,3 +43,4 @@ jobs:
       with:
         password: ${{ secrets.PYPI_API_TOKEN }}
         skip-existing: true
+        verbose: true
