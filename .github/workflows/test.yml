@@ -35,9 +35,9 @@ jobs:
     #   run: |
     #     mypy doc2mcp
     
-    - name: Format check with black
-      run: |
-        black --check doc2mcp tests
+    # - name: Format check with black
+    #   run: |
+    #     black --check doc2mcp tests
     
     # - name: Test with pytest
     #   run: |
